@@ -1,51 +1,28 @@
-import { useState } from 'react';
+import { getAuth, signOut } from 'firebase/auth';
 import './App.scss';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from './database/firebase';
-import Todo from './todo/todo';
-
+import AuthProvider from './registration/Auth';
+import { app } from './database/firebase';
 
 function App() {
-  const [todo, setTodo] = useState("");
-  const [refreshTodos, setRefreshTodos] = useState(false);
+  const auth = getAuth(app);
 
-  const addTodo = async (e: any) => {
-    e.preventDefault();
+  const handleLogout = () => {
+    
+    signOut(auth)
 
-    if (!todo.trim()) {
-      console.error("Todo cannot be empty.");
-      return;
-    }
-
-    try {
-      const docRef = await addDoc(collection(db, "todos"), {
-        todo: todo,
-      });
-      console.log("Document written with ID: ", docRef.id);
-      setTodo("");
-      setRefreshTodos(!refreshTodos);
-
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
-
+        .catch(error => console.error("Logout error:", error));
+};
+  
   return (
     <>
-      <h1>Todo List</h1>
-      <div className='createTodo' >
-        <input
-          type="text"
-          value={todo}
-          placeholder="newTodo"
-          onChange={(e) => setTodo(e.target.value)}
-        />
-        <button onClick={addTodo}>Create</button>
+    <AuthProvider>
+      <div>
+        <p>dqs</p>
+        <button onClick={handleLogout} className="logout-btn">
+                        Logout
+                    </button>
       </div>
-
-      <div className='todos'>
-        <Todo  refreshTrigger={refreshTodos}/>
-      </div>
+    </AuthProvider>
 
     </>
   );
