@@ -6,6 +6,7 @@ import { AuthContext } from "../Auth";
 import { Mail, Lock } from "lucide-react"
 import './LogIn.scss';
 import img from "../../assets/png/Logo-google-icon-PNG.png"
+import RegistrarionPage from "../RegistrarionPage/RegistrarionPage";
 
 const LoginPage = () => {
     const auth = getAuth(app);
@@ -119,7 +120,7 @@ const LoginPage = () => {
                     }
                 />
 
-                {/* <Route path="/register" element={<RegisterPage />} /> */}
+                <Route path="/register" element={<RegistrarionPage />} />
             </Routes>
         </Router>
     );

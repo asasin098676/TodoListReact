@@ -6,24 +6,27 @@ import { app } from './database/firebase';
 function App() {
   const auth = getAuth(app);
 
-  const handleLogout = () => {
-    
-    signOut(auth)
 
-        .catch(error => console.error("Logout error:", error));
-};
-  
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Не вдалося виконати вихід. Спробуйте ще раз.");
+    }
+  };
+
   return (
     <>
-    <AuthProvider>
-      <div>
-        <p>dqs</p>
-        <button onClick={handleLogout} className="logout-btn">
-                        Logout
-                    </button>
-      </div>
-    </AuthProvider>
-
+      <AuthProvider>
+        <div>
+          <p>Ви увійшли до системи</p>
+          <button onClick={handleLogout} className="logout-btn">
+            Вийти
+          </button>
+        </div>
+      </AuthProvider>
     </>
   );
 }
