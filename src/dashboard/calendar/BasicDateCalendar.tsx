@@ -7,7 +7,7 @@ export default function BasicDateCalendar() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar sx={{ backgroundColor: '#fceff9', borderRadius: 4, padding: 0, margin: 2, color: 'black' }}  />
+      <DateCalendar sx={{ backgroundColor: '#fceff9', borderRadius: 4, padding: 0, margin: 2, color: 'black', width: '100%' }}  />
     </LocalizationProvider>
   );
 }   
