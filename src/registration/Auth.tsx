@@ -1,15 +1,15 @@
 import {
     getAuth,
-
     onAuthStateChanged,
     User,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-
 import React from "react";
-import LoginPage from "./LogIn/LogIn";
 import { app } from "../database/firebase";
 import Dashboard from "../dashboard/Dashboard";
+import LoginPage from "./LogIn/LogIn";
+import { Routes, Route, Navigate } from "react-router-dom";
+import RegistrarionPage from "./RegistrarionPage/RegistrarionPage";
 
 interface AuthContextProps {
     user: User | null;
@@ -18,7 +18,7 @@ interface AuthContextProps {
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthProvider = () => {
     const [user, setUser] = useState<User | null>(null);
     const auth = getAuth(app);
 
@@ -31,7 +31,31 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>
-            {user ? <Dashboard/> : <LoginPage />}
+            <Routes>
+                <Route
+                    path="/"
+                    element={!user ? <LoginPage /> : <Navigate to="/dashboard" />}
+                />
+                   <Route
+                    path="/register"
+                    element={!user ? <RegistrarionPage /> : <Navigate to="/dashboard" />}
+                />
+
+                <Route
+                    path="/dashboard"
+                    element={user ? <Dashboard /> : <Navigate to="/" />}
+                />
+
+                <Route
+                    path="/"
+                    element={<Navigate to={user ? "/dashboard" : "/"} />}
+                />
+
+                <Route
+                    path="*"
+                    element={<Navigate to={user ? "/dashboard" : "/"} />}
+                />
+            </Routes>
         </AuthContext.Provider>
     );
 };
