@@ -22,9 +22,7 @@ function App() {
       <AuthProvider>
         <div>
           <p>Ви увійшли до системи</p>
-          <button onClick={handleLogout} className="logout-btn">
-            Вийти
-          </button>
+       
         </div>
       </AuthProvider>
     </>

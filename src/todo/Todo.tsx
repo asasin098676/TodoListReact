@@ -1,19 +1,32 @@
 import { getDocs, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { db } from "../database/firebase";
+import { app, db } from "../database/firebase";
 import './Todo.scss'
 import TextField from '@mui/material/TextField';
+import { getAuth, signOut } from "firebase/auth";
 
 interface Todo {
     id: string;
     todo: string;
 }
-interface TodoProps {
-    refreshTrigger: boolean;
-}
+// interface TodoProps {
+//     refreshTrigger: boolean;
+// }
 
-const Todo = ({ refreshTrigger }: TodoProps) => {
+const Todo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const auth = getAuth(app);
+
+
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+        console.log("User signed out successfully");
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Не вдалося виконати вихід. Спробуйте ще раз.");
+      }
+    };
 
     const fetchPost = async () => {
         await getDocs(collection(db, "todos"))
@@ -30,7 +43,7 @@ const Todo = ({ refreshTrigger }: TodoProps) => {
 
     useEffect(() => {
         fetchPost();
-    }, [refreshTrigger])
+    }, [])
 
     return (
         <div className="todos">
@@ -40,7 +53,7 @@ const Todo = ({ refreshTrigger }: TodoProps) => {
                     <div className="todoItem">
                         <p className="todoTitle">{todo.todo}</p>
                         <div className="todoAction">
-                           
+
                         </div>
                     </div>
 
@@ -48,6 +61,10 @@ const Todo = ({ refreshTrigger }: TodoProps) => {
                 </div>
             )
             )}
+
+            <button onClick={handleLogout} className="logout-btn">
+                Вийти
+            </button>
         </div>
     )
 }

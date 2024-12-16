@@ -13,13 +13,13 @@ const LoginPage = () => {
     const { setUser } = useContext(AuthContext)!;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState<string | null>(null); 
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const handleGoogleLogin = () => {
         setErrorMessage(null);
         signInWithPopup(auth, googleAuthProvider)
             .then((credentials) => setUser(credentials.user))
-            .catch((error) =>setErrorMessage(error.message));
+            .catch((error) => setErrorMessage(error.message));
     };
 
     const handleEmailLogin = (e: React.FormEvent) => {
@@ -93,29 +93,27 @@ const LoginPage = () => {
                                 <hr></hr>
 
                                 <div className="googleLogin">
-                                    
-                                  
+
+
                                     <button
                                         type="button"
                                         onClick={handleGoogleLogin}
                                         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                     >
-                                         <img src={img}></img>
+                                        <img src={img}></img>
                                         Google
                                     </button>
 
                                     <button>
-        
-                                    <Link
-                                        to="/register"
-                                    >
-                                        Зареєструватися
-                                    </Link>
+                                        <Link
+                                            to="/register"
+                                        >
+                                            Зареєструватися
+                                        </Link>
                                     </button>
 
                                 </div>
                             </form>
-
                         </div>
                     }
                 />

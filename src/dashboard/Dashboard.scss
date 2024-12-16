@@ -1,0 +1,39 @@
+.dashboard{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .header{
+        width: 100%;
+        height: 4rem;
+    }
+
+    body{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 15rem;
+
+        .leftBlock{
+         height: 100%;
+         width: 30%;
+
+        }
+
+        .mainBlock{
+            height: 100%;
+            width: 80%;
+        }
+    }
+
+    footer{
+        width: 100%;
+    }
+
+    
+}

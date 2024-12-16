@@ -1,20 +1,18 @@
 import {
     getAuth,
-    signInWithPopup,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
+
     onAuthStateChanged,
-    User, 
+    User,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
 import React from "react";
 import LoginPage from "./LogIn/LogIn";
 import { app } from "../database/firebase";
+import Dashboard from "../dashboard/Dashboard";
 
 interface AuthContextProps {
-    user: User | null; 
+    user: User | null;
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
@@ -26,14 +24,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser); 
+            setUser(currentUser);
         });
         return () => unsubscribe();
     }, [auth]);
 
     return (
         <AuthContext.Provider value={{ user, setUser }}>
-            {user ? children : <LoginPage />}
+            {user ? <Dashboard/> : <LoginPage />}
         </AuthContext.Provider>
     );
 };
