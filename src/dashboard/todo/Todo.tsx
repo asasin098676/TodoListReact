@@ -1,22 +1,47 @@
 import { getDocs, collection } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { app, db } from "../../database/firebase";
 import './Todo.scss'
 import { getAuth, signOut } from "firebase/auth";
 import { Calendar, Clock, List, Grid, Filter } from 'lucide-react';
+import { AuthContext, AuthContextProps } from "../../registration/Auth";
 
 interface Todo {
     id: string;
-    todo: string;
+    name: string;
+    description: string;
+    priority: string;
+    endDate: string;
+    endTime: string;
+    category: string;
+    creationDate: string;
+    creationTime: string;
+    overdue: boolean;
+    canEdit: boolean;
+    //check tis place
+    file: any;
 }
-// interface TodoProps {
-//     refreshTrigger: boolean;
-// }
+
 
 const Todo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const [userEmail, setUserEmail] = useState<string | null>(null);
     const auth = getAuth(app);
+    const { user } = useContext(AuthContext) as AuthContextProps;
 
+    // Оновлюємо userEmail, якщо user змінюється
+    useEffect(() => {
+        if (user?.email) {
+            setUserEmail(user.email);
+        }
+    }, [user]);
+
+    // Викликаємо fetchPost тільки якщо userEmail доступний
+    useEffect(() => {
+        if (userEmail) {
+            fetchPost();
+        }
+    }, [userEmail]);
 
     const handleLogout = async () => {
         try {
@@ -29,21 +54,18 @@ const Todo = () => {
     };
 
     const fetchPost = async () => {
-        await getDocs(collection(db, "todos"))
-            .then((querySnapshot) => {
-                const newData = querySnapshot.docs
-                    .map((doc) => ({
-                        ...doc.data(),
-                        id: doc.id
-                    })) as Todo[];
-
-                setTodos(newData)
-            })
-    }
-
-    useEffect(() => {
-        fetchPost();
-    }, [])
+        try {
+            const querySnapshot = await getDocs(collection(db, userEmail!)); // userEmail гарантовано доступний
+            const newData = querySnapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            })) as Todo[];
+            console.log(newData);
+            setTodos(newData);
+        } catch (error) {
+            console.error("Error fetching todos:", error);
+        }
+    };
 
     return (
         <div className="todos">
@@ -71,9 +93,9 @@ const Todo = () => {
                 <div className="todo" key={i}>
 
                     <div className="todoItem">
-                        <div className="priority"></div>
+                        <div className={todo.priority} ></div>
                         <div className="todoValue">
-                            <h2 className="todoTitle">{todo.todo}</h2>
+                            <h2 className="todoTitle">{todo.name}</h2>
                             <div className="category">
                                 <span>private</span>
                             </div>
@@ -83,7 +105,8 @@ const Todo = () => {
 
                     <div className="info">
                         <Clock className="clockIcon" />
-                        <span>12 december</span>
+                        <span>{todo.endDate}</span>
+                        <span>{todo.creationTime}</span>
                         <div className="status">
                             <span>виконано</span>
                         </div>

@@ -91,14 +91,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-           
 
-            .priority{
+            .low, .hight, .medium{
                 width: 0.5rem;
                 height: 0.5rem;
                 border-radius: 50%;
-                background-color: red;
                 max-width: .5rem;
+            }
+           
+
+            .hight{
+                background-color: red;
+            }
+            .low{
+                background-color: rgb(1, 208, 39);
+            }
+            .medium{
+                background-color: #f1c363;
             }
 
             .todoValue{
@@ -154,6 +163,7 @@
 
             span{
                 color: gray;
+                margin-right: 0.5rem;
             }
         }
     }

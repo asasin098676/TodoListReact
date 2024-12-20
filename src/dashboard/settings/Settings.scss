@@ -1,0 +1,102 @@
+.settingsPage{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .settingsHeader{
+        height: 4rem;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        h2{
+            margin-left: 1rem;
+            color: black;
+        }
+    }
+
+    .settingsBody{
+        width: 100%;
+        height: 58.4rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .settingsLeftBlock{
+   
+            width: 20%;
+            height: calc(100% - 4rem);
+            margin: 1rem;
+
+
+            .settingsCategory{
+                background-color: #fceff9;
+                border-radius: 1rem;
+                height: 15rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                button{
+                    width: 90%;
+                    background-color: white;
+                    height: 3rem;
+                    border-radius: 1rem;
+                    margin: 0.5rem;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    font-size: 19px;
+                    padding-right: 4rem;
+                
+
+                    .settingsIcon{
+                        margin-right: 1rem;
+                    }
+
+                }
+            }
+        }
+
+        .settingsMainBlock{
+            margin: 1rem;
+            background-color: antiquewhite;
+            border-radius: 1rem;
+            width: 80%;
+            height: calc(100% - 4rem);
+
+
+            .profileSettings{
+                width: 100%;
+
+                .profileSettingsHeader{
+                    width: 100%;
+                    height: 4rem;
+                    border-bottom: 1px solid gray;
+
+                    h2, p{
+                        margin: 0;
+                    }
+                }
+                
+                .profileSettingsBody{
+                    height: 20rem;
+                    width: 100%;
+
+                    .profilePhoto{
+                        width: 7rem;
+                        height: 7rem;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}

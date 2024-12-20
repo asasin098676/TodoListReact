@@ -10,10 +10,20 @@ import Dashboard from "../dashboard/Dashboard";
 import LoginPage from "./LogIn/LogIn";
 import { Routes, Route, Navigate } from "react-router-dom";
 import RegistrarionPage from "./RegistrarionPage/RegistrarionPage";
+import Settings from "../dashboard/settings/Settings";
+import CreateNewTodo from "../dashboard/todo/createNewTodo/CreateNewTodo";
 
-interface AuthContextProps {
+export interface AuthContextProps {
     user: User | null;
     setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}
+
+export interface UserData {
+    uid: string;
+    email: string | null;
+    displayName: string | null;
+    photoURL: string | null;
+    accessToken: string;
 }
 
 export const AuthContext = createContext<AuthContextProps | null>(null);
@@ -36,7 +46,7 @@ const AuthProvider = () => {
                     path="/"
                     element={!user ? <LoginPage /> : <Navigate to="/dashboard" />}
                 />
-                   <Route
+                <Route
                     path="/register"
                     element={!user ? <RegistrarionPage /> : <Navigate to="/dashboard" />}
                 />
@@ -44,6 +54,16 @@ const AuthProvider = () => {
                 <Route
                     path="/dashboard"
                     element={user ? <Dashboard /> : <Navigate to="/" />}
+                />
+
+                <Route
+                    path="/create"
+                    element={user ? <CreateNewTodo /> : <Navigate to="/" />}
+                />
+
+                <Route
+                    path="/settings"
+                    element={user ? <Settings /> : <Navigate to="/" />}
                 />
 
                 <Route
