@@ -18,6 +18,16 @@
             margin-left: 1rem;
             color: black;
         }
+        button {
+            background-color: #fbfbfb00;
+            padding: 5px 1rem 0 1rem;
+            display: flex;
+            align-items: center;
+
+            .returnIcon {
+                color: black
+            }
+        }
     }
 
     .settingsBody{

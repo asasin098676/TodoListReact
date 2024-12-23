@@ -6,7 +6,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { Calendar, Clock, List, Grid, Filter } from 'lucide-react';
 import { AuthContext, AuthContextProps } from "../../registration/Auth";
 
-interface Todo {
+export interface Todo {
     id: string;
     name: string;
     description: string;
@@ -97,7 +97,7 @@ const Todo = () => {
                         <div className="todoValue">
                             <h2 className="todoTitle">{todo.name}</h2>
                             <div className="category">
-                                <span>private</span>
+                                <span>{todo.category}</span>
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@ const Todo = () => {
                     <div className="info">
                         <Clock className="clockIcon" />
                         <span>{todo.endDate}</span>
-                        <span>{todo.creationTime}</span>
+                        <span>{todo.endTime}</span>
                         <div className="status">
                             <span>виконано</span>
                         </div>

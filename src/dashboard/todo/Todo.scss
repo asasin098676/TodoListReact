@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 
-    .filters{
+    .filters {
         width: 90%;
         margin: 16px;
         height: 6rem;
@@ -15,24 +15,24 @@
         justify-content: center;
 
 
-        .filterButtons{
-         width: 50%;
-         display: flex;
-         flex-direction: row;
-         align-items: center;
-         justify-content: flex-start;
-         gap: 1rem;
-         padding: 1rem;
+        .filterButtons {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem;
         }
 
-        .filter{
+        .filter {
             width: 50%;
             display: flex;
             justify-content: flex-end;
             padding: 1rem;
         }
 
-        button{
+        button {
             gap: 10px;
             display: flex;
             align-items: center;
@@ -42,12 +42,12 @@
             color: black;
 
             &:hover {
-                background-color: #6b21a8; 
-              }
-          
-              &:active {
-                background-color: #581c87; 
-              }
+                background-color: #6b21a8;
+            }
+
+            &:active {
+                background-color: #581c87;
+            }
         }
     }
 
@@ -56,7 +56,7 @@
         width: 90%;
         height: 3.8rem;
         border-radius: 10px;
-        background-color:  rgb(254 238 246);
+        background-color: rgb(254 238 246);
         border: 1px solid grey;
         display: flex;
         align-items: center;
@@ -92,52 +92,58 @@
             align-items: center;
             justify-content: center;
 
-            .low, .hight, .medium{
+            .low,
+            .hight,
+            .medium {
                 width: 0.5rem;
                 height: 0.5rem;
                 border-radius: 50%;
                 max-width: .5rem;
             }
-           
 
-            .hight{
+
+            .hight {
                 background-color: red;
             }
-            .low{
+
+            .low {
                 background-color: rgb(1, 208, 39);
             }
-            .medium{
+
+            .medium {
                 background-color: #f1c363;
             }
 
-            .todoValue{
+            .todoValue {
                 width: 85%;
                 display: flex;
                 align-items: center;
                 justify-content: flex-start;
 
-                h2{
+                h2 {
                     color: black;
                 }
 
-                .category{
+                .category {
                     margin-left: 1rem;
                     height: 1.5rem;
                     border-radius: 1rem;
-                    width: 4rem;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
                     background-color: rgb(231 231 231);
                     display: flex;
                     align-items: center;
                     justify-content: center;
 
-                    span{
-                      color: #4b5563;
+                    span {
+                        width: 100%;
+                        color: #4b5563;
                     }
                 }
             }
         }
 
-        .info{
+        .info {
             width: 50%;
             height: 100%;
             display: flex;
@@ -145,12 +151,12 @@
             align-items: center;
             justify-content: flex-end;
 
-            .clockIcon{
+            .clockIcon {
                 color: grey;
                 margin: .3rem;
             }
 
-            .status{
+            .status {
                 height: 2rem;
                 background-color: greenyellow;
                 border-radius: 1rem;
@@ -161,7 +167,7 @@
                 margin: 0.5rem;
             }
 
-            span{
+            span {
                 color: gray;
                 margin-right: 0.5rem;
             }
