@@ -25,10 +25,37 @@
 
     .category{
         width: 90%;
-        background-color: white;
+        background-color:#eae4dc;
         height: 3rem;
         border-radius: 1rem;
         margin: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
 
+        span{
+            font-weight: 500;
+            font-size: 20px;
+            margin-left: 1rem;
+            color:black
+        }
+
+
+    }
+
+    .home{
+        span{
+            color: rgba(165, 5, 219, 0.811);
+        }
+    }
+    .job{
+        span{
+            color: rgb(56, 98, 247);
+        }
+    }
+    .entertainment{
+        span{
+            color: rgba(0, 174, 0, 0.786);
+        }
     }
 }

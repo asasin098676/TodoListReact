@@ -1,6 +1,7 @@
 .createTodoWindow {
     width: 100%;
     height: 100%;
+    margin-top: -0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +49,7 @@
 
     .createTodoWindowMainBlock {
         margin: 1rem;
-        height: calc(100vh - 5rem);
+        height: 61rem;
         width: 95vw;
         border-radius: 1rem;
         background-color: #fbf1fa;
@@ -101,7 +102,8 @@
                 align-items: center;
                 justify-content: center;
 
-                .category {
+                .category,
+                .priority {
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -117,18 +119,31 @@
                 }
 
                 .low {
-                    border: 1px solid #68d568;
                     background-color: rgb(69 255 69 / 48%);
                 }
 
                 .medium {
-                    border: 1px solid #d5b268;
                     background-color: rgb(255 210 69 / 48%);
                 }
 
                 .hight {
-                    border: 1px solid #d56868;
                     background-color: rgb(255 69 69 / 32%);
+                }
+
+                .home {
+                    background-color: #cda9c8;
+                }
+
+                .job {
+                    background-color: rgb(138, 138, 234);
+                }
+
+                .entertainment {
+                    background-color: #e75fff;
+                }
+
+                .active {
+                    border: 3px solid #a9a9a9;
                 }
             }
 
@@ -169,6 +184,13 @@
                             transition: border-color 0.2s;
                         }
 
+                        input:disabled {
+                            background-color: #f5f5f5;
+                            color: #9e9e9e;
+                            border: 1px solid #ccc;
+                            cursor: not-allowed;
+                        }
+
                         .dateSelectIcon,
                         .timeSelectIcon {
                             color: gray;
@@ -207,11 +229,11 @@
                     align-items: center;
                     justify-content: space-around;
 
-                    .settingTitleBlock{
-                       text-align: start;
+                    .settingTitleBlock {
+                        text-align: start;
                         width: 100%;
 
-                        .p{
+                        .p {
                             margin: 0;
                         }
                     }
@@ -242,11 +264,11 @@
                         height: 2rem;
                         border-radius: 9999px;
                         background-color: #a855f7;
-                   
+
                         position: relative;
                         transition: all 0.3s ease-in-out;
 
-                     
+
                         .innerCircleAlowd {
                             position: absolute;
                             left: 1.5rem;
@@ -260,14 +282,15 @@
                             background-color: #ffffff;
                         }
                     }
-                    .buttonNotAllowdEdit{
+
+                    .buttonNotAllowdEdit {
                         width: 3.5rem;
                         height: 2rem;
                         border-radius: 9999px;
                         background-color: #e5e7eb;
                         position: relative;
                         transition: all 0.3s ease-in-out;
-                   
+
                         .innerCircleNotAlowd {
                             position: absolute;
                             left: 0.25rem;

@@ -14,7 +14,7 @@ const CreateNewTodo = () => {
     const [todoPriority, setTodoriority] = useState('');
     const [todoDate, setTodoDate] = useState('')
     const [todoTime, setTodoTime] = useState('')
-    const [todoCategory, setTodoCategory] = useState('home')
+    const [todoCategory, setTodoCategory] = useState('')
     const [userEmail, setUserEmail] = useState<string | null>(null)
     const { user } = useContext(AuthContext) as AuthContextProps;
 
@@ -26,33 +26,41 @@ const CreateNewTodo = () => {
         }
     }, [user]);
 
+    const isFormValid = todoName.trim() && todoDescription.trim() && todoCategory && todoPriority && todoDate && todoTime;
+
+    const today = new Date();
+    const hour = String(today.getHours());
+    const minutes = String(today.getMinutes())
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+
+    const createDate = dd + '/' + mm + '/' + yyyy;
+    const createTime = hour + ':' + minutes
+
+
     const handleCreateTodo = async () => {
         if (!userEmail) {
             console.error("User email is not available. Cannot create a todo.");
             return;
         }
-    
+
         try {
             const userCollection = collection(db, userEmail);
 
-            //
-            // додати категуорію
-            //  
-            // 
-            
             await setDoc(doc(userCollection), {
                 name: todoName,
                 description: todoDescription,
                 priority: todoPriority,
                 endDate: todoDate,
                 endTime: todoTime,
-                creationDate: '11.12',
-                creationTime: '13:30',
+                creationDate: createDate,
+                creationTime: createTime,
                 category: todoCategory,
                 canEdit: allowEdit,
                 file: 'Some File'
             });
-    
+
             console.log("Todo successfully added!");
 
             navigate('/dashboard');
@@ -60,7 +68,7 @@ const CreateNewTodo = () => {
             console.error("Error adding todo:", error);
         }
     };
-    
+
 
 
     return (
@@ -72,7 +80,7 @@ const CreateNewTodo = () => {
                         <h2>Нове завдання</h2>
                     </div>
 
-                    <button onClick={handleCreateTodo} className='addButton'>create</button>
+                    <button disabled={!isFormValid} onClick={handleCreateTodo} className='addButton'>create</button>
                 </div>
 
                 <div className='createTodoWindowMainBlock'>
@@ -83,9 +91,18 @@ const CreateNewTodo = () => {
                     <div className='otherOptionToCreatoTodo'>
                         <p className='settingTitle'>приорітет</p>
                         <div className='priorityOption'>
-                            <button onClick={() => { setTodoriority('hight') }} className='category hight '><p>високий</p></button>
-                            <button onClick={() => { setTodoriority('medium') }} className='category medium'><p>середній</p></button>
-                            <button onClick={() => { setTodoriority('low') }} className='category low'><p>низький</p></button>
+                            <button onClick={() => { setTodoriority('hight') }}
+                                className={`priority hight ${todoPriority === 'hight' ? 'active' : ''}`}><p>високий</p></button>
+                            <button onClick={() => { setTodoriority('medium') }}
+                                className={`priority medium ${todoPriority === 'medium' ? 'active' : ''}`}><p>середній</p></button>
+                            <button onClick={() => { setTodoriority('low') }}
+                                className={`priority low ${todoPriority === 'low' ? 'active' : ''}`}><p>низький</p></button>
+                        </div>
+                        <p className='settingTitle'>категорія</p>
+                        <div className='priorityOption'>
+                            <button onClick={() => { setTodoCategory('home') }} className={`category home ${todoCategory === 'home' ? 'active' : ''}`}><p>home</p></button>
+                            <button onClick={() => { setTodoCategory('job') }} className={`category job ${todoCategory === 'job' ? 'active' : ''}`}><p>job</p></button>
+                            <button onClick={() => { setTodoCategory('entertainment') }} className={`category entertainment ${todoCategory === 'entertainment' ? 'active' : ''}`}><p>entertainment</p></button>
                         </div>
                         <div className='creationDateAndTime'>
                             <div className="dateSelect">
@@ -95,6 +112,7 @@ const CreateNewTodo = () => {
                                         onChange={(e) => { setTodoDate(e.target.value) }}
                                         type="date"
                                         className="dateSelectInput"
+                                        min={new Date().toISOString().split("T")[0]}
                                     />
                                     <Calendar className="dateSelectIcon" />
                                 </div>
@@ -104,6 +122,7 @@ const CreateNewTodo = () => {
                                 <label className="timeSelectLabel">Час</label>
                                 <div>
                                     <input
+                                        disabled={!todoDate}
                                         onChange={(e) => { setTodoTime(e.target.value) }}
                                         className='timeSelectInput'
                                         type="time"

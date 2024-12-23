@@ -9,9 +9,15 @@ const Category = () => {
                     <span>категорії</span>
                 </div>
 
-                <div className='category'></div>
-                <div className='category'></div>
-                <div className='category'></div>
+                <div className='category home'>
+                    <span>home</span>
+                </div>
+                <div className='category job'>
+                    <span>job</span>
+                </div>
+                <div className='category entertainment'>
+                    <span>entertainment</span>
+                </div>
             </div>
         </>
     )
