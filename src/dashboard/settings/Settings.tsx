@@ -1,43 +1,105 @@
 import { useContext, useState } from "react";
 import { AuthContext, AuthContextProps } from "../../registration/Auth";
 import './Settings.scss';
+import { ChevronLeft } from 'lucide-react';
 import { User, Lock, Palette } from 'lucide-react';
 import img from '../../assets/png/225-default-avatar.png';
-import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
-import { storage } from "../../database/firebase";
-import { v4 as uuid } from 'uuid';
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { getAuth, sendEmailVerification, signOut, updateEmail, updatePassword, updateProfile } from "firebase/auth";
+import { LogOut } from 'lucide-react';
+import { app } from "../../database/firebase";
 
 const Settings = () => {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext) as AuthContextProps;
+    const auth = getAuth(app);
 
-    const [imageUpload, setImageUpload] = useState<File | null>(null);
-    const [photoURL, setPhotoURL] = useState<string>(user?.photoURL || img);
+    const [email, setEmail] = useState(user?.email || '')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [surName, setSurName] = useState('')
 
-    const uploadFile = () => {
-        if (!imageUpload) {
-            toast.error("Please select an image");
-            return;
+    const isFormValid = name.trim() || surName.trim() || password.trim()
+
+    const updateUserInfomation = async () => {
+        if (name.length > 0 && surName.length > 0) {
+            updateUserNameAndSurname()
         }
-        const imageRef = storageRef(storage, `products/${uuid()}`);
+        if (password.length > 0) {
+            updateUserPassword()
+        }
+        if (email.length > 0) {
+            updateUserEmail()
+        }
+    }
 
-        uploadBytes(imageRef, imageUpload)
-            .then((snapshot) => {
-                getDownloadURL(snapshot.ref)
-                    .then((url) => {
-                        setPhotoURL(url); // Оновлення фото URL
-                        toast.success("Photo uploaded successfully!");
-                    })
-                    .catch((error) => toast.error(error.message));
-            })
-            .catch((error) => toast.error(error.message));
+    const updateUserNameAndSurname = async () => {
+        if (!auth.currentUser) return;
+
+        try {
+            await updateProfile(auth.currentUser, {
+                displayName: `${name} ${surName}`,
+                photoURL: user?.photoURL || img,
+
+            });
+            alert("Профіль успішно оновлено!");
+        } catch (error) {
+            console.error("Помилка оновлення профілю:", error);
+            alert("Не вдалося оновити профіль. Спробуйте ще раз.");
+        }
     };
 
+
+    const updateUserEmail = async () => {
+        if (!auth.currentUser) return;
+
+        try {
+            await updateEmail(auth.currentUser, email);
+
+            await sendEmailVerification(auth.currentUser);
+            alert("Електронна пошта успішно оновлена!");
+        } catch (error) {
+            console.error("Помилка оновлення електронної пошти:", error);
+            alert("Не вдалося оновити електронну пошту. Спробуйте ще раз.");
+        }
+    };
+
+    const updateUserPassword = async () => {
+        if (!auth.currentUser) return;
+
+        try {
+            await updatePassword(auth.currentUser, password);
+            alert("Пароль успішно змінено!");
+        } catch (error) {
+            console.error("Помилка зміни пароля:", error);
+            alert("Не вдалося змінити пароль. Спробуйте ще раз.");
+        }
+    };
+
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            console.log("User signed out successfully");
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("Не вдалося виконати вихід. Спробуйте ще раз.");
+        }
+    };
     return (
         <>
             <div className="settingsPage">
                 <div className="settingsHeader">
-                    <h2>Settings</h2>
+                    <div className="settingsHeaderLeftBlock">
+                        <button onClick={() => { navigate('/dashboard') }}> <ChevronLeft className="returnIcon" /></button>
+                        <h2>Settings</h2>
+                    </div>
+                    <div className="settingsHeaderRightBlock">
+                        <button className="exitButton" onClick={handleLogout} >
+                            <LogOut className="exitIcon" />
+                            Вийти
+                        </button>
+                    </div>
                 </div>
                 <div className="settingsBody">
                     <div className="settingsLeftBlock">
@@ -54,24 +116,45 @@ const Settings = () => {
                                 <p>Керуйте своєю особистою інформацією</p>
                             </div>
                             <div className="profileSettingsBody">
-                                <img
-                                    src={photoURL || img}
-                                    alt="Avatar"
-                                    className="profilePhoto"
-                                />
-                                <input
-                                    type="file"
-                                    accept="image/png,image/jpeg"
-                                    onChange={(e) => {
-                                        if (e.target.files && e.target.files[0]) {
-                                            setImageUpload(e.target.files[0]);
-                                        }
-                                    }}
-                                />
-                                <button onClick={uploadFile}>Upload Photo</button>
+                                <div className="profileSettingsImg">
+                                    <img
+                                        src={user?.photoURL || img}
+                                        alt="Avatar"
+                                        className="profilePhoto"
+                                    />
+
+                                    <button className="changePhotoButton">Змінити фото</button>
+                                    <button className="deletePhotoButton">Видалити</button>
+                                </div>
+                                <div className="ProfileSettingsInputs">
+                                    <div className="ProfileSettingsNameAndSurnameInputs">
+                                        <div className="ProfileSettingNameInput">
+                                            <span>Ім'я</span>
+                                            <input placeholder="Нове ім'я" onChange={(e) => { setName(e.target.value) }}></input>
+                                        </div>
+                                        <div className="ProfileSettingSurnameInput">
+                                            <span>Прізвище</span>
+                                            <input placeholder="Нове Прізвище" onChange={(e) => { setSurName(e.target.value) }}></input>
+                                        </div>
+
+                                    </div>
+                                    <div className="ProfileSettingsNameAndSurnameInputs">
+                                        <div className="ProfileSettingPasswordInput">
+                                            <span>Новий Пароль</span>
+                                            <input placeholder="Новий пароль" onChange={(e) => { setPassword(e.target.value) }}></input>
+                                        </div>
+                                    </div>
+                                    <div className="ProfileSettingEmailInput">
+                                        <span>Email</span>
+                                        <input value={email} onChange={(e) => { setEmail(e.target.value) }}></input>
+                                    </div>
+
+                                </div>
+
+                                <button disabled={!isFormValid} onClick={updateUserInfomation} className="SaveChangesButton">Зберегти зміни</button>
+
                             </div>
                         </div>
-                        <h2>{user?.displayName}</h2>
                     </div>
                 </div>
             </div>
