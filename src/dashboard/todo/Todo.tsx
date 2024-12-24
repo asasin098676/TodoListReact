@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { app, db } from "../../database/firebase";
 import './Todo.scss'
 import { getAuth, signOut } from "firebase/auth";
-import { Calendar, Clock, List, Grid, Filter } from 'lucide-react';
+import { Clock, List, Grid, Filter } from 'lucide-react';
 import { AuthContext, AuthContextProps } from "../../registration/Auth";
 
 export interface Todo {
@@ -36,7 +36,6 @@ const Todo = () => {
         }
     }, [user]);
 
-    // Викликаємо fetchPost тільки якщо userEmail доступний
     useEffect(() => {
         if (userEmail) {
             fetchPost();
