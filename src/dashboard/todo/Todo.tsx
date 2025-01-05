@@ -1,10 +1,10 @@
 import { getDocs, collection } from "firebase/firestore";
 import { useState, useEffect, useContext } from "react";
-import { app, db } from "../../database/firebase";
+import { db } from "../../database/firebase";
 import './Todo.scss'
-import { getAuth, signOut } from "firebase/auth";
 import { Clock, List, Grid, Filter } from 'lucide-react';
 import { AuthContext, AuthContextProps } from "../../registration/Auth";
+import { useNavigate } from "react-router-dom";
 
 export interface Todo {
     id: string;
@@ -17,6 +17,7 @@ export interface Todo {
     creationDate: string;
     creationTime: string;
     overdue: boolean;
+    status: string;
     canEdit: boolean;
     //check tis place
     file: any;
@@ -26,10 +27,10 @@ export interface Todo {
 const Todo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [userEmail, setUserEmail] = useState<string | null>(null);
-    const auth = getAuth(app);
     const { user } = useContext(AuthContext) as AuthContextProps;
 
-    // Оновлюємо userEmail, якщо user змінюється
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (user?.email) {
             setUserEmail(user.email);
@@ -42,19 +43,10 @@ const Todo = () => {
         }
     }, [userEmail]);
 
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            console.log("User signed out successfully");
-        } catch (error) {
-            console.error("Logout error:", error);
-            alert("Не вдалося виконати вихід. Спробуйте ще раз.");
-        }
-    };
 
     const fetchPost = async () => {
         try {
-            const querySnapshot = await getDocs(collection(db, userEmail!)); // userEmail гарантовано доступний
+            const querySnapshot = await getDocs(collection(db, userEmail!));
             const newData = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
@@ -89,7 +81,7 @@ const Todo = () => {
 
             </div>
             {todos.map((todo, i) => (
-                <div className="todo" key={i}>
+                <div onClick={() => { navigate('/task-details', { state: todo }) }} className="todo" key={i}>
 
                     <div className="todoItem">
                         <div className={todo.priority} ></div>
@@ -107,7 +99,7 @@ const Todo = () => {
                         <span>{todo.endDate}</span>
                         <span>{todo.endTime}</span>
                         <div className="status">
-                            <span>виконано</span>
+                            <span>{todo.status}</span>
                         </div>
                     </div>
 
@@ -116,9 +108,7 @@ const Todo = () => {
             )
             )}
 
-            <button onClick={handleLogout} className="logout-btn">
-                Вийти
-            </button>
+
         </div>
     )
 }

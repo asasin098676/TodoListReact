@@ -58,7 +58,8 @@ const CreateNewTodo = () => {
                 creationTime: createTime,
                 category: todoCategory,
                 canEdit: allowEdit,
-                file: 'Some File'
+                file: 'Some File',
+                status: 'new task'
             });
 
             console.log("Todo successfully added!");
