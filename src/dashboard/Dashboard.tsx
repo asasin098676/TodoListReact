@@ -25,11 +25,16 @@ const Dashboard = () => {
                     </div>
                     <div className="mainBlock">
                         <Todo></Todo>
-
                     </div>
                 </div>
+                <button onClick={() => { navigate('/create') }} className="add-button">
+                    <svg className="add-button__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+
                 <footer>
-                    <button onClick={() => { navigate('/create') }}>add new todo</button>
+                    {/* <button onClick={() => { navigate('/create') }}>add new todo</button> */}
                 </footer>
             </div >
         </>

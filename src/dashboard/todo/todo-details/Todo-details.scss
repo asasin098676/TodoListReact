@@ -1,0 +1,459 @@
+.taskDetailsPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+
+    .hight {
+        background-color: red;
+    }
+
+    .low {
+        background-color: rgb(1, 208, 39);
+    }
+
+    .medium {
+        background-color: #f1c363;
+    }
+
+    .active {
+        border: 3px solid #ff55ff;
+    }
+
+    .taskDetailsPageHeader {
+        width: 100%;
+        height: 5rem;
+        background-color: aliceblue;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .taskDetailTitile {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 1rem;
+
+            span {
+                margin-left: 1rem;
+                color: black;
+                font-size: 30px;
+                font-weight: 700;
+            }
+
+            button {
+                background-color: #fbfbfb00;
+                padding: 5px 1rem 0 1rem;
+                margin-right: 1rem;
+
+                .returnIcon {
+                    color: black
+                }
+            }
+
+            .low,
+            .hight,
+            .medium {
+                width: 0.5rem;
+                height: 0.5rem;
+                border-radius: 50%;
+            }
+
+              
+        }
+
+        .taskDetailEditButton {
+            margin-right: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            .saveChangeButton{
+                background-color: #a855f7;
+                color: white;
+                border: 0;
+            }
+
+            button {
+                background-color: aliceblue;
+                border: 1px solid purple;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: purple;
+                padding: 0.5rem;
+                height: 2.5rem;
+
+                .taskDetailEditButtonIcon {
+                    margin-right: .5rem;
+                    color: purple;
+                }
+
+            }
+        }
+    }
+
+    .taskDetailsPageMainBlock {
+        height: calc(100vh - 5rem);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .taskDetailsPageMainRightBlock {
+            height: 100%;
+            width: 30%;
+
+            .taskDetailData {
+                width: calc(100% - 2rem);
+                height: auto;
+                margin-top: 1rem;
+                border-radius: 1rem;
+                background-color: #eff8ff;
+                padding-bottom: 1rem;
+
+                span {
+                    color: black;
+                }
+
+                .taskDetailDataStatus,
+                .taskDetailDataPriority,
+                .taskDetailDataDeadTime,
+                .taskDetailDataUsers {
+                    padding: 1rem 1rem 0rem 1rem;
+                    padding-left: 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    span {
+                        color: gray;
+                        font-weight: 600;
+                    }
+
+                }
+
+                .taskDetailDataStatus {
+                    .taskStatus {
+                        border-radius: .5rem;
+                        background-color: #f1c3636e;
+                        padding: 0.1rem 1rem 0.1rem 1rem;
+
+                        span {
+                            color: #b45309;
+                        }
+                    }
+
+                }
+
+                .taskDetailDataPriority {
+                    .priorityData {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                 
+
+                        .priorytyIcon{
+                            margin-right: .5rem;
+                        }
+
+                        .hight {
+                            background-color: #eff8ff;
+                            color: red;
+                        }
+
+                        .low {
+                            background-color: #eff8ff;
+                            color: rgb(1, 208, 39);
+                        }
+
+                        .medium {
+                            background-color: #eff8ff;
+                            color: #f1c363;
+                        }
+                    }
+                }
+
+                .taskDetailDataDeadTime{
+                    div{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: .5rem;
+
+                        .icon{
+                            color: rgb(81, 81, 81);
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+                .statusEdit{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    padding: 1rem;
+                    padding-bottom: 0;
+
+                    .statusSelect{
+                        width: calc(100% - 2rem); 
+                        padding: 0.5rem 1rem; 
+                        background-color: #ffffff;
+                        border-radius: 0.75rem; 
+                        border: 2px solid #e5e7eb; 
+                        outline: none; 
+                        color: black;
+                        padding-right: 2rem;
+                        appearance: none;
+                        height: 3rem;
+                        background: #fff url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6"></path></svg>') no-repeat right calc(1rem - 0.3rem) center; 
+                        background-size: 1rem;
+                        font-size: 20px;
+                        &:focus {
+                          border-color: #a855f7; 
+                        }
+                    }
+                }
+
+                .editPriority{
+                    width: calc(100% - 2rem);
+                    padding: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    .editPriorityButtons{
+                        width: 100%;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr;
+                        gap: 1rem;
+
+                        button{
+                            height: 3rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+
+                    }
+                }
+
+                .editDateAndTime{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    padding: 1rem;
+
+                    .dateSelect, .timeSelect{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        width: calc(100% - 4.6rem);
+                        margin-bottom: 0.5rem;
+
+                        .dateSelectInputBlock, .timeSelectInputBlock{
+                            width: 100%;
+                            position: relative;
+
+                            .dateSelectInput, .timeSelectInput{
+                                width: 100%;
+                                background-color:  #dadada;;
+                            }
+
+                            .dateSelectIcon, .timeSelectIcon{
+                                position: absolute;
+                                left: 1rem;
+                                top: .8rem;
+                                color: gray;
+                            }
+                        }
+                    }
+
+                    .additionalSettingBlock {
+                        margin-top: 1rem;
+                        margin-bottom: 1rem;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+    
+                        .settingTitleBlock {
+                            text-align: start;
+                            width: 100%;
+    
+                            .p {
+                                margin: 0;
+                            }
+                        }
+    
+                        .additionalSettingBlockTitle {
+                            width: calc(100% - 10rem);
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            margin-left: 1rem;
+    
+                            h3 {
+                                color: black;
+                                padding: 0;
+                                margin: 0;
+                            }
+    
+                            p {
+                                margin: 0;
+                                padding: 0;
+                                color: rgb(140 140 140);
+                            }
+                        }
+    
+                        .buttonAllowdEdit {
+                            width: 3.5rem;
+                            height: 2rem;
+                            border-radius: 9999px;
+                            background-color: #a855f7;
+    
+                            position: relative;
+                            transition: all 0.3s ease-in-out;
+    
+    
+                            .innerCircleAlowd {
+                                position: absolute;
+                                left: 1.5rem;
+                                top: 0.2rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                border-radius: 9999px;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                transform: translateX(0);
+                                transition: transform 0.3s ease-in-out;
+                                background-color: #ffffff;
+                            }
+                        }
+    
+                        .buttonNotAllowdEdit {
+                            width: 3.5rem;
+                            height: 2rem;
+                            border-radius: 9999px;
+                            background-color: #e5e7eb;
+                            position: relative;
+                            transition: all 0.3s ease-in-out;
+    
+                            .innerCircleNotAlowd {
+                                position: absolute;
+                                left: 0.25rem;
+                                top: 0.2rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                border-radius: 9999px;
+                                background-color: #ffffff;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                                transform: translateX(0);
+                                transition: transform 0.3s ease-in-out;
+                            }
+                        }
+                    }
+                
+
+                }
+                .deleteButton{
+                    margin: 1rem;
+                    border-radius: 1rem;
+                    background-color: red;
+                    width: calc(100% - 2rem);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1rem
+                }
+            }
+        }
+
+        .taskDetailsPageMainLeftBlock {
+            width: 70%;
+            height: 100%;
+
+            .taskDescription {
+                width: calc(100% - 4rem);
+                min-height: 6rem;
+                height: auto;
+                border-radius: 1rem;
+                background-color: #eff8ff;
+                margin: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-around;
+                padding-left: 1rem;
+
+                span {
+                    display: inline;
+                    height: max-content;
+                    color: black;
+                }
+
+                .taskDescriptionTitle {
+                    font-size: 20px;
+                    font-weight: 600;
+                    height: 3rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .taskNameValue{
+                    width: calc(100% - 5rem);
+
+                    .editNameInput{
+                        width: 100%;
+                        padding-left: 1rem;
+                        padding-right: 3rem;
+                    }
+                }
+
+                .taskDescriptionValue {
+                    text-align: start;
+                    height: auto;
+                    overflow-wrap: break-word;
+                    white-space: pre-wrap;
+                    width: calc(100% - 5em);
+                    margin-bottom: 1rem;
+              
+
+                    span {
+                        font-size: 17px;
+                        font-weight: 400;
+                    }
+
+                    .editDescriptionInput{
+                        width: 100%;
+                        max-width: 100%;
+                        min-height: 5rem;
+                        max-height: 20rem;
+                        background-color: white;
+                        color: black;
+                        border-radius: 1rem;
+                        border: 2px solid #e5e7eb;
+                        padding-top: .5rem;
+                        padding-bottom: .5rem;
+                        padding-left: 1rem;
+                        padding-right: 3rem;
+                    }
+                }
+            }
+        }
+    }
+}

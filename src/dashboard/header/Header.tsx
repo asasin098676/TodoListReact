@@ -23,7 +23,6 @@ const Header = () => {
                     <div className='notification'>
                         <button>
                             <Bell className="icon" />
-                            {/* <span></span> */}
                         </button>
                     </div>
                     <div className='settings'>
@@ -45,6 +44,3 @@ const Header = () => {
 
 export default Header
 
-function useAuth() {
-    throw new Error('Function not implemented.');
-}
