@@ -12,6 +12,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import RegistrarionPage from "./RegistrarionPage/RegistrarionPage";
 import Settings from "../dashboard/settings/Settings";
 import CreateNewTodo from "../dashboard/todo/createNewTodo/CreateNewTodo";
+import TodoDetails from "../dashboard/todo/todo-details/Todo-details";
 
 export interface AuthContextProps {
     user: User | null;
@@ -55,6 +56,10 @@ const AuthProvider = () => {
                     path="/dashboard"
                     element={user ? <Dashboard /> : <Navigate to="/" />}
                 />
+
+                <Route
+                    path="/task-details"
+                    element={user ? <TodoDetails /> : <Navigate to='/dashboard' />} />
 
                 <Route
                     path="/create"
