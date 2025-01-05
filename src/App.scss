@@ -1,22 +1,9 @@
 #root {
   max-width: 100vw;
   text-align: center;
-}
-
-.createTodo {
-  width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-
-  input {
-    width: 80%;
-    height: 2rem;
-    margin-bottom: 2rem;
-  }
+  justify-content: center;
+  width: 100%;
 }
 
-.todos {
-  width: 90vw;
-}

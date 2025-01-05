@@ -1,0 +1,315 @@
+.createTodoWindow {
+    width: 100%;
+    height: 100%;
+    margin-top: -0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .createTodoWindowHeader {
+        width: 100%;
+        height: 5rem;
+        padding: 0;
+        background-color: #fbf1fa;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        div {
+            margin-left: 2rem;
+            display: flex;
+            align-items: center;
+
+            button {
+                background-color: #fbfbfb00;
+                padding: 5px 1rem 0 1rem;
+
+                .returnIcon {
+                    color: black
+                }
+            }
+        }
+
+        ;
+
+        .addButton {
+            background-color: hsl(271.3deg 82.14% 56.08%);
+            width: 9rem;
+            margin-right: 3rem;
+        }
+
+        h2 {
+            color: black;
+        }
+    }
+
+    .createTodoWindowMainBlock {
+        margin: 1rem;
+        height: 61rem;
+        width: 95vw;
+        border-radius: 1rem;
+        background-color: #fbf1fa;
+
+
+        .nameAndDescroptionInputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 10rem;
+
+            .createTodoName,
+            .createTodoDescription {
+                background-color: #fbebf9;
+                height: 4rem;
+                width: calc(100% - 4.2rem);
+                font-size: 30px;
+                font-weight: 700;
+                border: 0;
+                border-radius: 0;
+                border-top-left-radius: 1rem;
+                border-top-right-radius: 1rem;
+            }
+
+            .createTodoDescription {
+                border-top: 1px solid #fcdff8;
+                font-size: 18px;
+                font-weight: 400;
+                border-radius: 0;
+            }
+        }
+
+        .otherOptionToCreatoTodo {
+            height: 45rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-items: flex-start;
+
+            p {
+                color: black;
+            }
+
+            .priorityOption {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                .category,
+                .priority {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: white;
+                    height: 3rem;
+                    width: calc(33% - 1.5rem);
+                    border-radius: 1rem;
+                    margin: 0.5rem;
+
+                    p {
+                        min-width: 7rem;
+                    }
+                }
+
+                .low {
+                    background-color: rgb(69 255 69 / 48%);
+                }
+
+                .medium {
+                    background-color: rgb(255 210 69 / 48%);
+                }
+
+                .hight {
+                    background-color: rgb(255 69 69 / 32%);
+                }
+
+                .home {
+                    background-color: #cda9c8;
+                }
+
+                .job {
+                    background-color: rgb(138, 138, 234);
+                }
+
+                .entertainment {
+                    background-color: #e75fff;
+                }
+
+                .active {
+                    border: 3px solid #a9a9a9;
+                }
+            }
+
+            .creationDateAndTime {
+                width: calc(100% - 2rem);
+                margin-top: 1rem;
+                margin-left: 1rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-evenly;
+
+                .dateSelect,
+                .timeSelect {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    width: 100%;
+
+                    .dateSelectLabel,
+                    .timeSelectLabel {
+                        font-size: 16px;
+                        margin-top: 6px;
+                        margin-left: 1rem;
+                    }
+
+                    div {
+                        width: 100%;
+                        position: relative;
+
+                        input {
+                            background-color: #dadada;
+                            color: black;
+                            width: calc(100% - 5rem);
+                            outline: none;
+                            /* outline-none */
+                            transition: border-color 0.2s;
+                        }
+
+                        input:disabled {
+                            background-color: #f5f5f5;
+                            color: #9e9e9e;
+                            border: 1px solid #ccc;
+                            cursor: not-allowed;
+                        }
+
+                        .dateSelectIcon,
+                        .timeSelectIcon {
+                            color: gray;
+                            position: absolute;
+                            left: 1.3rem;
+                            top: 0.9rem;
+                        }
+                    }
+                }
+            }
+
+            .addFileToTodo {
+                width: calc(100% - 6.7rem);
+                border-width: 2px;
+                border-style: dashed;
+                border-color: #e5e7eb;
+                border-radius: 0.75rem;
+                padding: 2rem;
+                margin-left: 1rem;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+
+                .addFileIcon {
+                    color: gray;
+                }
+            }
+
+            .additionalSettings {
+                margin-left: 1rem;
+                width: calc(100% - 1rem);
+
+                .additionalSettingBlock {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    .settingTitleBlock {
+                        text-align: start;
+                        width: 100%;
+
+                        .p {
+                            margin: 0;
+                        }
+                    }
+
+                    .additionalSettingBlockTitle {
+                        width: calc(100% - 10rem);
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        margin-left: 1rem;
+
+                        h3 {
+                            color: black;
+                            padding: 0;
+                            margin: 0;
+                        }
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                            color: rgb(140 140 140);
+                        }
+                    }
+
+                    .buttonAllowdEdit {
+                        width: 3.5rem;
+                        height: 2rem;
+                        border-radius: 9999px;
+                        background-color: #a855f7;
+
+                        position: relative;
+                        transition: all 0.3s ease-in-out;
+
+
+                        .innerCircleAlowd {
+                            position: absolute;
+                            left: 1.5rem;
+                            top: 0.2rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            border-radius: 9999px;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            transform: translateX(0);
+                            transition: transform 0.3s ease-in-out;
+                            background-color: #ffffff;
+                        }
+                    }
+
+                    .buttonNotAllowdEdit {
+                        width: 3.5rem;
+                        height: 2rem;
+                        border-radius: 9999px;
+                        background-color: #e5e7eb;
+                        position: relative;
+                        transition: all 0.3s ease-in-out;
+
+                        .innerCircleNotAlowd {
+                            position: absolute;
+                            left: 0.25rem;
+                            top: 0.2rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            border-radius: 9999px;
+                            background-color: #ffffff;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            transform: translateX(0);
+                            transition: transform 0.3s ease-in-out;
+                        }
+                    }
+                }
+            }
+        }
+
+        .settingTitle {
+            margin-left: 2rem;
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+}

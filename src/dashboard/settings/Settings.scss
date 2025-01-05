@@ -1,0 +1,246 @@
+.settingsPage {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    .settingsHeader {
+        height: 4rem;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .settingsHeaderLeftBlock,
+        .settingsHeaderRightBlock {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .exitButton {
+                background-color: #9333eb;
+                height: 3rem;
+                margin-right: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0rem 1rem 0rem 1rem;
+
+                .exitIcon {
+                    margin-right: .5rem;
+                }
+            }
+
+
+        }
+
+        .settingsHeaderRightBlock {}
+
+        h2 {
+            margin-left: 1rem;
+            color: black;
+        }
+
+        button {
+            background-color: #fbfbfb00;
+            padding: 5px 1rem 0 1rem;
+            display: flex;
+            align-items: center;
+
+            .returnIcon {
+                color: black
+            }
+        }
+    }
+
+    .settingsBody {
+        width: 100%;
+        height: 43rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .settingsLeftBlock {
+            width: 20%;
+            height: calc(100% - 4rem);
+            margin: 1rem;
+
+
+            .settingsCategory {
+                background-color: #fcf0fb;
+                border-radius: 1rem;
+                height: 15rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                button {
+                    width: 90%;
+                    background-color: #faf5ff;
+                    height: 3rem;
+                    border-radius: 1rem;
+                    margin: 0.5rem;
+                    color: black;
+                    display: flex;
+                    align-items: center;
+                    font-size: 19px;
+                    padding-right: 4rem;
+
+
+                    .settingsIcon {
+                        margin-right: 1rem;
+                    }
+
+                }
+            }
+        }
+
+        .settingsMainBlock {
+            margin: 1rem;
+            background-color: #fcf0fb;
+            border-radius: 1rem;
+            width: 80%;
+            height: calc(100% - 4rem);
+            min-height: 39rem;
+
+
+            .profileSettings {
+                width: 100%;
+
+                .profileSettingsHeader {
+                    width: 100%;
+                    height: 5rem;
+                    border-bottom: 1px solid #d4d4d4;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+
+                    h2,
+                    p {
+                        padding-left: 1.5rem;
+                        color: black;
+                        margin: 0;
+                    }
+                }
+
+                .profileSettingsBody {
+                    height: 20rem;
+                    width: 100%;
+
+                    .profileSettingsImg {
+                        width: calc(100% - 6rem);
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding: 2rem;
+
+                        .profilePhoto {
+                            width: 7rem;
+                            height: 7rem;
+                            border-radius: 50%;
+                        }
+
+                        .changePhotoButton {
+                            background-color: #faf5ff;
+                            color: #9333eb;
+                            margin: 1rem;
+                        }
+
+                        .deletePhotoButton {
+                            margin: 1rem;
+                            background-color: #feeef5;
+                            color: #4b5563;
+                        }
+                    }
+
+                    .ProfileSettingsInputs {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+
+                        .ProfileSettingsNameAndSurnameInputs {
+                            display: flex;
+                            width: 100%;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            height: 6rem;
+                            padding-right: 1rem;
+
+                            .ProfileSettingPasswordInput{
+                                width: calc(100% - 3rem);
+                                margin-left: 1rem;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: center;
+
+                                input{
+                                    margin: 0;
+                                    padding: 0.5rem 0.2rem 0.5rem 0.5rem;
+                                    width: calc(100% - 0.5rem);
+                                }
+                            }
+                          
+
+
+                            .ProfileSettingNameInput,
+                            .ProfileSettingSurnameInput {
+                                padding: 1rem;
+                                height: 100%;
+                                width: 49%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: flex-start;
+                                justify-content: center;
+                                margin-left: 1rem;
+
+                                input {
+                                    margin: 0;
+                                    padding: 0.5rem 0.2rem 0.5rem 0.5rem;
+                                    width: 98%;
+                                }
+                            }
+                        }
+
+                        .ProfileSettingEmailInput {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            width: calc(100% - 1rem);
+                            padding-left: 2rem;
+
+                            input {
+                                width: calc(100% - 2.5rem);
+                                padding: 0.5rem 0.2rem 0.5rem 0.5rem;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            span {
+                margin-bottom: .5rem;
+                color: black;
+            }
+
+            .SaveChangesButton {
+                margin-top: 2rem;
+            }
+        }
+    }
+
+
+}

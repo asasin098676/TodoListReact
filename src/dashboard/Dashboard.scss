@@ -1,0 +1,63 @@
+.dashboard{
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+
+    .header{
+        width: 100%;
+        height: 4rem;
+    }
+
+    .body{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+
+        .leftBlock{
+         height: 100%;
+         width: 30vw;
+         
+
+        }
+
+        .mainBlock{
+            height: 100%;
+            width: 80%;
+        }
+    }
+    .add-button {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        padding: 1rem;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: 0;
+        background: linear-gradient(to right, #7c3aed, #ec4899);
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: all 0.3s ease-in-out;
+      
+        &:hover {
+          box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+      }
+      
+
+    footer{
+        width: 100%;
+    }
+
+    
+}
